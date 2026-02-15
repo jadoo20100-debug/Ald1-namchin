@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body { font-family: 'Apple SD Gothic Neo', sans-serif; background-color: #fff0f5; margin: 0; padding: 20px; text-align: center; }
+  h1 { color: #ff69b4; }
+  
+  /* 버튼 스타일 */
+  #match-btn {
+    background-color: #ff69b4; color: white; border: none; padding: 15px 30px;
+    font-size: 1.2em; font-weight: bold; border-radius: 50px; cursor: pointer;
+    margin: 20px 0; box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+  }
+  #match-btn:active { transform: scale(0.95); }
+
+  /* 결과창 스타일 */
+  #result-area {
+    display: none; background: white; border-radius: 20px; padding: 20px;
+    margin: 20px auto; max-width: 400px; border: 3px solid #ff69b4;
+    animation: pop 0.5s ease-out;
+  }
+  @keyframes pop { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+  #result-img { width: 100%; border-radius: 15px; }
+  #result-text { font-size: 1.3em; font-weight: bold; margin-top: 15px; color: #333; }
+
+  hr { border: 0; height: 1px; background: #ffc0cb; margin: 40px 0; }
+  .member-list img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 5px; border: 2px solid white; }
+</style>
+</head>
+<body>
+
+  <h1>💕 두근두근 매칭</h1>
+  
+  <button id="match-btn" onclick="startMatching()">남친 돌리기</button>
+
+  <div id="result-area">
+    <img id="result-img" src="">
+    <div id="result-text"></div>
+  </div>
+
+  <hr>
+  <p style="color: #888;">멤버 리스트</p>
+  <div class="member-list">
+    <img src="1.png"> <img src="2.png"> <img src="3.png"> <img src="4.png">
+    <img src="5.png"> <img src="6.png"> <img src="7.png"> <img src="8.png">
+  </div>
+
+  <script>
+    const members = ["리오", "준서", "아르노", "건우", "상원", "씬롱", "안신", "상현"];
+
+    function startMatching() {
+      const resultArea = document.getElementById('result-area');
+      const resultImg = document.getElementById('result-img');
+      const resultText = document.getElementById('result-text');
+
+      // 1~8 사이의 랜덤 숫자 생성
+      const randomIndex = Math.floor(Math.random() * 8); // 0~7
+      const memberName = members[randomIndex];
+      const imageNumber = randomIndex + 1;
+
+      // 결과 업데이트
+      resultImg.src = imageNumber + ".png";
+      resultText.innerHTML = "축하합니다! 🎉<br>당신은 <span style='color:#ff69b4;'>" + memberName + "</span>님과 매칭되었습니다!";
+      
+      // 결과창 보이기
+      resultArea.style.display = "block";
+      
+      // 화면을 결과창으로 부드럽게 이동
+      resultArea.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
